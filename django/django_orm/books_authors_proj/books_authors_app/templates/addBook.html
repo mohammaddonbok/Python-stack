@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>All Shows</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #wrapper {
+            width: 900px;
+            margin: auto;
+        }
+        h1{
+            display: inline-block;
+            width: 400px;
+            margin-left:526px;
+        }
+        .actions { 
+            width: 150px;
+        }
+        #left{
+            float: left;
+            width: 400px;
+        }
+        #right{
+            float: right;
+            width: 400px;
+            margin-left: 100px;
+        }
+        button{
+            width: 150px;
+            margin-top: 10px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <h1>Add a Book</h1>
+    <form id="wrapper" method="POST" action="/addBook">{%csrf_token%}
+        <div class="form-group" id="left">
+            <label for="">Title</label>
+            <input type="text" class="form-control" name="title" id="" aria-describedby="helpId"
+                placeholder="book title">
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea class="form-control" name="desc" id="" rows="3"></textarea>
+            </div>
+            <button type="submit" name="" id="" class="btn btn-primary" btn-lg btn-block>Add</button>
+            <a href="/Authors">Authors page</a>
+        </div>
+        <table class="table" id="right">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for book in all_books%}
+                <tr>
+                    <td scope="row">{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td>
+                        <div class="actions">
+                            <a href="/displayBook/{{book.id}}" class="a">View</a>
+                        </div>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+        
+    </form>
+</body>
+<!--Show,Edit     Delete-->
+
+</html>

@@ -1,0 +1,24 @@
+1>>from dojo_ninjas_app.models import Ninjas
+2>>from dojo_ninjas_app.models import Dojos
+3>>Dojos.objects.create(name="samorai",city="shangahai",state="china")
+4>>Dojos.objects.create(name="darkSamorai",city="shangahai",state="china")
+5>>Dojos.objects.create(name="winterDojo",city="ohan",state="china")
+6>> c=Dojos.objects.all()
+>>> c.delete()
+7>>rewrite step 3,4,5
+8>>first_dojo=Dojos.objects.get(id=4)
+9>>Ninjas.objects.create(dojo=first_dojo,first_name="lee",last_name="wahan")
+>>Ninjas.objects.create(dojo=first_dojo,first_name="hosa",last_name="shenga")
+>>Ninjas.objects.create(dojo=first_dojo,first_name="ahowa",last_name="rehal")
+>>third_dojo=Dojos.objects.get(id=6)
+>>Ninjas.objects.create(dojo=third_dojo,first_name="song",last_name="han")
+>>Ninjas.objects.create(dojo=third_dojo,first_name="yang",last_name="shi")
+>>Ninjas.objects.create(dojo=third_dojo,first_name="lambo",last_name="hasi")
+>>Ninjas.objects.filter(dojo_id=4)
+>> Ninjas.objects.filter(dojo_id=6)
+>>Dojos.objects.last()
+>>first add field desc to the models.py
+>>second python manage.py makemigrations
+>> choose 1
+>> giv a deafult value ex:""
+>> python manage.py migrate

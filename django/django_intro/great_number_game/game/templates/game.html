@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>game</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #wrapper {
+            width: 400px;
+            margin: auto;
+            margin-top: 50px;
+            border: solid black 2px;
+        }
+
+        h1 {
+            width: 400px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        input,
+        p {
+            width: 350px;
+            text-align: center;
+            margin-left: 20px;
+
+        }
+
+        button {
+            margin-left: 150px;
+            margin-top: 10px;
+
+            width: 100px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <div id="wrapper">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+        <form action='/play' method='post'>{% csrf_token %}
+            <input type="number" name="user_state">
+            {% if request.session.user_state == 0 %}
+            <div id="result">Too low!!!</div>
+            <button type="submit" name="" id="" class="btn btn-primary" btn-lg btn-block>Submit</button>
+            {% elif request.session.user_state == 1 %}
+            <div id="result">Too high!!!</div>
+            <button type="submit" name="" id="" class="btn btn-primary" btn-lg btn-block>Submit</button>
+            
+            {% elif request.session.user_state == 3 %}
+            <button type="submit" name="" id="" class="btn btn-primary" btn-lg btn-block>Submit</button>
+
+            <form action="/score" method="GET">
+                {% elif request.session.user_state == 4 %}
+                <div id="result">Sorry, you lost! The number was {{request.session.cpu_num}}</div>
+                <button type="submit" name="" id="" class="btn btn-primary" btn-lg btn-block><a href="/again">Play
+                        Again</a></button>
+
+                {%endif%}
+            </form>
+            {% if request.session.user_state == 2 %}
+            <div>
+                <form action="/score" method="POST">{% csrf_token %}
+                    <p>{{request.session.user_num}} was the correct number!</p>
+                    <input type="submit" value="Check leaderboard!"> Enter username: <input type="text" name="name">
+                    <button type="button" class="btn btn-primary" style="color: white;"><a href="/again">Play
+                            Again</a></button>
+                </form>
+
+            </div>
+            {% endif %}
+            <p>{{request.session.counter}}</p>
+    </div>
+</body>
+
+</html>

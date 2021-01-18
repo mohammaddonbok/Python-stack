@@ -1,0 +1,32 @@
+call djangoPy3Env\Scripts\activate    
+
+pip install Django==2.2.4
+
+cd python_stack/django/django_intro
+django_intro> django-admin startproject your_project_name_here
+
+
+cd your_project_name_here
+your_project_name_here> python manage.py runserver
+
+python manage.py startapp your_app_name_here
+
+
+django important steps{
+step 1>> add my app to the setting.py 
+installed_apps =[
+'my app name',
+..........
+.....
+..
+]
+
+step 2>>urls.py file, add a URL pattern for your new app,you will need to add an import for your views file
+
+
+step 3>>from django.urls import path, include           # import include
+# from django.contrib import admin              # comment out, or just delete
+urlpatterns = [
+    path('', include('your_app_name_here.urls')),
+    # path('admin/', admin.sites.urls)         # comment out, or just delete
+]

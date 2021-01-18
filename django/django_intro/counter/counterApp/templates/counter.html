@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    {% load static%}
+    <link rel="stylesheet" href="{%static 'css/counter.css'%}">
+</head>
+<body>
+    <center>
+        <form class="wrapper" methods="POST" action="/">
+            <label>Counter</label>
+            <p> {{request.session.counter}}</p>
+        </form>
+        <form class="wrapper" methods="POST" action="/destroy_session">
+            <button type="submit">Reset</button>
+        </form>
+        <form class="wrapper" methods="POST" action="/add">
+            <button type="submit">Add 2</button>
+        </form>
+        <form class="wrapper" methods="POST" action="/insert">
+            <input name="dynamic" placeholder="add__to counter">
+        </form>
+        
+    </center>
+</body>
+</html>

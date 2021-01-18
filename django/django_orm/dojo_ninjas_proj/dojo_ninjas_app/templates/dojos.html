@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Dojos</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #wrapper {
+            display: flex;
+            justify-content: start;
+            width: 500px;
+            margin: auto;
+        }
+
+        #dojo {
+            display: inline-block;
+            width: 500px;
+        }
+
+        #ninjas {
+            display: inline-block;
+            width: 500px;
+        }
+
+        #select {
+            width: 250px;
+        }
+
+        label {
+            width: 250px;
+        }
+
+        .form-control-file {
+            width: 250px;
+        }
+
+        hr {
+            width: 500px;
+            height: 2px;
+            background-color: black;
+        }
+
+        #display {
+            display: inline-block;
+            margin-left: 570px;
+            width: 500px;
+        }
+
+        ul {
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <div id="wrapper">
+        <form class="form-group" id="dojo" method="POST" action="/addDojo">{% csrf_token %}
+            <h2>Add a Dojo</h2>
+            <label for="">Name</label>
+            <input type="text" class="form-control-file" name="name_dojo" id="" placeholder="Dojo Name" aria-describedby="fileHelpId">
+            <label for="">City</label>
+            <input type="text" class="form-control-file" name="city" id="" placeholder="state"
+                aria-describedby="fileHelpId">
+            <label for="">State</label>
+            <input type="text" class="form-control-file" name="state" id="" placeholder="state"
+                aria-describedby="fileHelpId">
+            <button type="submit" name="" id="" class="btn btn-primary" btn-lg btn-block>Add</button>
+        </form>
+        <form class="form-group" id="ninjas" method="POST" action="/addNinja">{% csrf_token %}
+            <h2>Add a Ninja</h2>
+            <label for="">First_name</label>
+            <input type="text" class="form-control-file" name="first_name" id="" placeholder="first name"
+                aria-describedby="fileHelpId">
+            <label for="">last_name</label>
+            <input type="text" class="form-control-file" name="last_name" id="" placeholder="last name"
+                aria-describedby="fileHelpId">
+            <div class="form-group">
+                <label for="">Dojo</label>
+                <select class="form-control" name="select_dojo" id="select">
+                    {%for i in Dojo%}
+                    <option value="{{i.id}}">{{i.name}}</option>
+                    {%endfor%}
+                </select>
+                <button type="submit" name="" id="" class="btn btn-primary" btn-lg btn-block>Add</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <form id="display" action="/delete" method="POST">{% csrf_token %}
+        <h2>All The Dojos</h2>
+        {%for i in Dojo%}
+        <ul>
+            <li>Ninjas at {{i.name}} {{i.ninja.count}}</li><button type="submit" value="{{i.id}}" name="btn" id="" class="btn btn-primary" btn-lg btn-block>Delete</button>
+            {%for j in i.ninja.all%}
+            <ul>
+                <li>{{j.first_name}} {{j.last_name}}</li>
+            </ul>
+            {%endfor%}
+        </ul>
+        {%endfor%}
+    </form>
+    <form >
+        
+    </form>
+</body>
+
+</html>

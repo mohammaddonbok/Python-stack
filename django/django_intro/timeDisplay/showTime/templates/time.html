@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Time</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/time.css'%}">
+
+</head>
+<body>
+    <center>
+        <div class="center">
+            <p id="paragraph">The current time and Date</p>
+            <p id="paragraph2">{{time}}</p>
+        </div>
+    </center>
+</body>
+</html>

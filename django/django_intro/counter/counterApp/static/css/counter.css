@@ -1,0 +1,12 @@
+body{
+    width: 1000px;
+}
+.wrapper{
+    display: inline-block;
+    width: 200px;
+    
+
+}
+label{
+    width: 100px;
+}

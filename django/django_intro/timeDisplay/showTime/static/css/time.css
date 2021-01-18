@@ -1,0 +1,17 @@
+#paragraph{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    border: solid black 2px;
+}
+#paragraph2{
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    border: solid black 2px;
+}
+.center{
+    display:inline-block;
+    width:300px;
+    margin: auto;
+}

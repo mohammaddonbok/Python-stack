@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dojo.css' %}">  
+</head>
+
+<body>
+    <div id="wrapper">
+        <form>
+            <div>
+                <label name="Your-name" class="label">Your name:</label>
+                <p class="select">{{n}}</p>
+            </div>
+            <div>
+                <label name="location" class="label">Dojo Location:</label>
+                <p class="select">{{lo}}</p>
+            </div>
+            <div>
+                <label name="language" class="label">Favorite Language:</label>
+                    <p class="select">{{la}}</p>
+                </select>
+            </div>
+                <label name="Comment" class="label" style="margin-top: 10px; ">Comment (optional):</label>
+                <textarea style="height: 50px;" name="text">{{c}}</textarea>
+        </form>
+        <form  action="/">
+            <button type="submit">Go back</button>
+        </form>
+
+
+
+    </div>
+</body>
+
+</html>
