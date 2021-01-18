@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>check board</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/checkboard.css')}}?q=1280549780">-->
+    <style>
+        .color1{
+            float: right;
+            width: 60px;
+            height: 60px;           
+            background-color: {{c1}};
+            
+            }
+            .color2{
+            float: right;
+            width: 60px;
+            height: 60px;
+            background-color: {{c2}};
+            }
+            section{
+                width: {{check_width}}px;
+                height: {{check_height}}px;
+            }
+    </style>
+</head>
+<body>
+    <section>
+        {%for j in range(0,y)%}
+            {% if j%2 ==0 %}
+                {% for i in range(0,x) %}
+                    {% if i%2 ==0 %}
+                        <div class="color1"></div>
+                    {%endif%}
+                    {% if i%2!=0 %}
+                        <div class="color2"></div>
+                    {%endif%}
+                {% endfor %}
+            {%endif%}
+            {%if j%2 != 0%}
+                {% for i in range(0,x) %}
+                    {% if i%2 ==0 %}
+                        <div class="color2"></div>
+                    {%endif%}
+                    {% if i%2!=0 %}
+                        <div class="color1"></div>
+                    {%endif%}
+                {% endfor %}
+            {%endif%}
+        {%endfor%}
+    </section>
+</body>
+</html>
